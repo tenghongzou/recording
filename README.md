@@ -1,1 +1,1 @@
-echo "# recordtest"
+第一次實作 MIC 功能
