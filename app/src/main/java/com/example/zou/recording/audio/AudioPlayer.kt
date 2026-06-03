@@ -24,6 +24,33 @@ class AudioPlayer(private val context: Context) {
             false
         }
 
+    /** Current playback position in milliseconds (0 when there is no player). */
+    val currentPositionMs: Int
+        get() = try {
+            player?.currentPosition ?: 0
+        } catch (e: IllegalStateException) {
+            Log.w(TAG, "currentPositionMs queried in an invalid state", e)
+            0
+        }
+
+    /** Total track duration in milliseconds (0 when unknown or no player). */
+    val durationMs: Int
+        get() = try {
+            (player?.duration ?: 0).coerceAtLeast(0)
+        } catch (e: IllegalStateException) {
+            Log.w(TAG, "durationMs queried in an invalid state", e)
+            0
+        }
+
+    /** Seeks playback to [ms] milliseconds. */
+    fun seekTo(ms: Int) {
+        try {
+            player?.seekTo(ms)
+        } catch (e: IllegalStateException) {
+            Log.w(TAG, "seekTo() called in an invalid state", e)
+        }
+    }
+
     /**
      * Plays [uri] from the beginning, invoking [onCompletion] when playback finishes.
      */

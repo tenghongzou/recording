@@ -36,5 +36,15 @@ data class RecorderUiState(
     /** 是否已取得錄音(RECORD_AUDIO)權限 */
     val hasPermission: Boolean = false,
     /** 一次性提示訊息(對應舊版的 Toast),顯示後由 UI 呼叫 consumeMessage 清除 */
-    val message: String? = null
+    val message: String? = null,
+
+    // ── UI/UX 即時資料 ──────────────────────────────
+    /** 錄音中的經過時間(毫秒) */
+    val elapsedMs: Long = 0,
+    /** 即時波形:0f..1f 正規化的滾動振幅視窗(最新值在尾端),供錄音時視覺化 */
+    val amplitudes: List<Float> = emptyList(),
+    /** 播放目前位置(毫秒) */
+    val positionMs: Long = 0,
+    /** 目前音檔總長度(毫秒);未知時為 0 */
+    val durationMs: Long = 0
 )

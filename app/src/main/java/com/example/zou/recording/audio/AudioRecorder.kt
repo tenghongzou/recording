@@ -69,6 +69,19 @@ class AudioRecorder(private val context: Context) {
         }
     }
 
+    /**
+     * Returns the maximum amplitude sampled since the previous call (0 when not
+     * recording or on error), for driving a live waveform.
+     */
+    fun maxAmplitude(): Int {
+        return try {
+            recorder?.maxAmplitude ?: 0
+        } catch (e: Exception) {
+            Log.w(TAG, "maxAmplitude() queried in an invalid state", e)
+            0
+        }
+    }
+
     private fun createMediaRecorder(): MediaRecorder {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             MediaRecorder(context)
