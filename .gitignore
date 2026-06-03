@@ -12,6 +12,8 @@
 
 # Package Files #
 *.jar
+# 例外:Gradle wrapper 的 bootstrap jar 必須進版控,否則他人 clone 後無法執行 ./gradlew
+!gradle/wrapper/gradle-wrapper.jar
 *.war
 *.nar
 *.ear
@@ -21,3 +23,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Local configuration (contains machine-specific SDK path)
+local.properties
