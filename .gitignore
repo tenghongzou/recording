@@ -29,3 +29,12 @@ local.properties
 
 # Gradle 建置快取(不應進版控;2016 年誤提交)
 .gradle/
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+
+# 建置輸出
+/build/
+/app/build/
+captures/
